@@ -6,22 +6,38 @@
 
 int main()
 {
-    srand(time(NULL));
-    struct Menu *Menu1 = new_menu();
-    struct Menu *Menu2 = new_menu();
-    struct Menu *Menu3 = new_menu();
+    struct Menu *Menu1 = NULL;
 
-    modify(Menu1, rand() % 10 + 1, "Burrito");
-    modify(Menu2, rand() % 10 + 1, "Fries");
-    modify(Menu3, rand() % 10 + 1, "Steak");
+    printf("Printing empty list with null: \n");
+    print_list(Menu1);
 
-    read(Menu1);
-    read(Menu2);
-    read(Menu3);
+    printf("Adding #s 0-9 to list.\n");
+    int i;
+    for (i = 0; i < 10; i++)
+    {
+        Menu1 = insert_front(Menu1, i);
+    }
 
-    free(Menu1);
-    free(Menu2);
-    free(Menu3);
+    print_list(Menu1);
 
+    printf("Removing 9\n");
+    Menu1 = remove_node(Menu1, 9);
+
+    print_list(Menu1);
+
+    printf("Removing 2\n");
+    Menu1 = remove_node(Menu1, 2);
+
+    print_list(Menu1);
+
+    printf("Removing -1\n");
+    Menu1 = remove_node(Menu1, -1);
+
+    print_list(Menu1);
+
+    printf("Freeing list\n");
+    print_list(free_list(Menu1));
+
+    
     return 0;
 }
